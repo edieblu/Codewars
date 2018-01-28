@@ -4,23 +4,28 @@
 
 // Note: a and b are not ordered!
 
+// mu solution
+
 function GetSum(a,b){
-   var nums = [];
-   nums.push(a,b);
-   nums.sort(function(){
-   	return a-b});
-   if (a != b) {
-   		total = nums[0]
-	   for (var i =nums[0]; i < nums[1]; i++){
-	   	total++;
-	   } if (nums[0] != 0 && nums[1] != 0) {
-	   return total;
-	   } else {
-	   	return total -1;
-	   }  
-	} else {
-		return a;
-	}
+ if (a === b) {
+ 	return a;
+ } else {
+ 	var total = 0;
+ 	var sorted = [];
+ 	sorted.push(a,b);
+ 	sorted = sorted.sort(function(a,b){
+ 		return a-b;
+ 	});
+ 	for (var i = sorted[0]; i <= sorted[1]; i++){
+ 		total += i;
+ 	}
+ } return total;
 }
 
-console.log(GetSum(-1,0));
+// solution I liked (and still struggle to understand but, it's so clever!!)
+function GetSum( a,b )
+{
+   if (a == b) return a;
+   else if (a < b) return a + GetSum(a+1, b);
+   else return a + GetSum(a-1,b);
+}
